@@ -88,7 +88,7 @@ function fdel() {
 
 # Delete branch from remote
 function rdel() {
-    git push origin --delete $1
+    git push origin :$1
 }
 
 # Creates and checks out to new branch
