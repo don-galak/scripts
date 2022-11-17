@@ -1,11 +1,17 @@
 alias clear_install="rm -rf node_modules package-lock.json && npm install"
 
+alias vpn="openvpn3 session-start --config Downloads/profile-239.ovpn" 
+alias killV="openvpn3 session-manage --session-path Downloads/profile-239.ovpn --disconnect"
+
+# Navigating
+alias ..="cd ../"
+alias ...="cd ../../"
+alias ....="cd ../../../"
+
 # Stash all files
-alias stashu="git stash --keep-index -u"
+alias stash="git stash --keep-index -u"
 # Prune Origin
 alias prune="git remote prune origin"
-
-
 alias pop="git stash pop"
 alias a="git branch -a"
 alias ps="git push"
