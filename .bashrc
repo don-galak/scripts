@@ -1,7 +1,7 @@
 alias clear_install="rm -rf node_modules package-lock.json && npm install"
 
 alias vpn="openvpn3 session-start --config Downloads/profile-239.ovpn" 
-alias killV="openvpn3 session-manage --session-path Downloads/profile-239.ovpn --disconnect"
+alias killV="openvpn3 session-manage --config Downloads/profile-239.ovpn --disconnect"
 
 # Navigating
 alias ..="cd ../"
