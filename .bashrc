@@ -67,17 +67,23 @@ function seturl() {
 
 # Commit
 function commit() {
-    git commit -m "$1"
+    echo "Enter commit message: "
+    read
+    git commit -m "$REPLY"
 }
 
 # Add and commit
 function addmit() {
-    git add . && git commit -m "$1"
+    echo "Enter commit message: "
+    read
+    git add . && git commit -m "$REPLY"
 }
 
 # Add commit and push
 function adp() {
-    git add .&& git commit -m "$1" && git push
+    echo "Enter commit message: "
+    read
+    git add .&& git commit -m "$REPLY" && git push
 }
 
 function pub() {
@@ -91,22 +97,30 @@ function sw() {
 
 # Delete local branch
 function del() {
-    git branch -d $1
+    echo "Enter branch name: "
+    read BRANCH_NAME
+    git branch -d $BRANCH_NAME
 }
 
 # Force delete local branch
 function fdel() {
-    git branch -D $1
+    echo "Local branch to force delete: "
+    read BRANCH_NAME
+    git branch -D $BRANCH_NAME
 }
 
 # Delete branch from remote
 function rdel() {
-    git push origin :$1
+    echo "Remote branch to delete: "
+    read BRANCH_NAME
+    git push origin :$BRANCH_NAME
 }
 
 # Creates and checks out to new branch
 function new() {
-    git checkout -b $1
+    echo "Enter branch name: "
+    read BRANCH_NAME
+    git checkout -b $BRANCH_NAME
 }
 
 # Clone git repo without its history
