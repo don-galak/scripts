@@ -43,6 +43,13 @@ alias u="source .bashrc"
 #############FUNCTIONS############
 ##################################
 
+# Submit exercism solution
+function exsub() {
+    DIR="${PWD##*/}"
+    FILE_TO_SUBMIT=${DIR//-/_}
+    exercism submit "$FILE_TO_SUBMIT.go"
+}
+
 # GIT CONFIG LIST
 function list() {
     git config --list
