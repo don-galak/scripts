@@ -50,6 +50,29 @@ function exsub() {
     exercism submit "$FILE_TO_SUBMIT.go"
 }
 
+###### GIT WORKTREE FUNCTIONS #################
+
+function clone_bare() {
+    echo "Enter git url to clone: "
+    git clone --bare "$REPLY"
+}
+
+function gw_add() {
+    echo "Enter branch name to add: "
+    git worktree add "$REPLY"
+}
+
+function gw_remove() {
+    echo "Enter branch name to remove: "
+    git worktree remove "$REPLY"
+}
+
+function gw_add_remote() {
+    echo "Enter REMOTE branch name  to add: "
+    git worktree add ../"$REPLY" "$REPLY"
+}
+
+
 # GIT Store credentials
 function storeCreds() {
     echo "For how many days do you want your git credentials to be stored?"
