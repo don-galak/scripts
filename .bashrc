@@ -50,6 +50,14 @@ function exsub() {
     exercism submit "$FILE_TO_SUBMIT.go"
 }
 
+# GIT Store credentials
+function storeCreds() {
+    echo "For how many days do you want your git credentials to be stored?"
+    read
+    TIMEOUT=$(( REPLY*86400 ))
+    git config --global credential.helper "cache --timeout=$TIMEOUT"
+}
+
 # GIT CONFIG LIST
 function list() {
     git config --list
@@ -88,6 +96,11 @@ function adp() {
 
 function pub() {
     git push -u origin HEAD
+}
+
+# Commit and publish
+function addpub() {
+        addmit && pub
 }
 
 # Switch branch
