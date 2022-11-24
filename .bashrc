@@ -54,22 +54,26 @@ function exsub() {
 
 function clone_bare() {
     echo "Enter git url to clone: "
+    read
     git clone --bare "$REPLY"
 }
 
 function gw_add() {
     echo "Enter branch name to add: "
+    read
     git worktree add "$REPLY"
 }
 
 function gw_remove() {
     echo "Enter branch name to remove: "
+    read
     git worktree remove "$REPLY"
 }
 
 function gw_add_remote() {
     echo "Enter REMOTE branch name  to add: "
-    git worktree add ../"$REPLY" "$REPLY"
+    read
+    git worktree add "$REPLY" "$REPLY"
 }
 
 
