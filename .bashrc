@@ -43,6 +43,12 @@ alias u="source .bashrc"
 #############FUNCTIONS############
 ##################################
 
+# Kill port
+function killPort() {
+        echo "Enter port to kill"
+        sudo kill -9 `sudo lsof -t -i:$REPLY`
+}
+
 # Submit exercism solution
 function exsub() {
     DIR="${PWD##*/}"
