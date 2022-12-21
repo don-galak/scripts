@@ -43,6 +43,10 @@ alias u="source .bashrc"
 #############FUNCTIONS############
 ##################################
 
+function exposeLocalhost() {
+        ssh -R 80:experts.local localhost.run
+}
+
 # Kill port
 function killPort() {
         echo "Enter port to kill"
