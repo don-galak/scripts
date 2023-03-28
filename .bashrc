@@ -206,3 +206,65 @@ function create() {
     git switch dev &&
     git branch -d $1
 }
+
+function delete_branch() {
+  # Get list of branches and store in array
+  branches=($(git branch | cut -c 3-))
+
+  # Check if there are any branches to delete
+  if [ ${#branches[@]} -eq 0 ]; then
+    echo "No branches to delete"
+    return 0
+  fi
+
+  # Prompt user to select branch to delete
+  branch=$(printf '%s\n' "${branches[@]}" | rofi -dmenu -p "Select branch to delete:")
+
+  # Check if branch is selected
+  if [ -n "$branch" ]; then
+    # Delete selected branch
+    git branch -D "$branch"
+  else
+    echo "No branch selected for deletion"
+  fi
+}
+
+alias delete_branch=delete_branch
+
+function delete_all_branches() {
+  # Get the name of the currently checked out branch
+  current_branch=$(git rev-parse --abbrev-ref HEAD)
+
+  # Get list of branches and store in array
+  branches=($(git branch | cut -c 3-))
+
+  # Check if there are any branches to delete
+  if [ ${#branches[@]} -eq 1 ]; then
+    echo "No other branches to delete"
+    return 0
+  fi
+
+  # Prompt user to confirm deletion of all branches except current
+  message="Are you sure you want to delete all branches except $current_branch?"
+  if ! confirm "$message"; then
+    return 0
+  fi
+
+  # Loop through branches and delete all except current
+  for branch in "${branches[@]}"; do
+    if [ "$branch" != "$current_branch" ]; then
+      git branch -D "$branch"
+    fi
+  done
+}
+
+function confirm() {
+  # Prompt user to confirm an action
+  message="$1 (y/N): "
+  read -rp "$message" confirm
+  case "$confirm" in
+    [yY][eE][sS]|[yY]) true ;;
+    *) false ;;
+  esac
+}
+
