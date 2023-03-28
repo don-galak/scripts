@@ -268,3 +268,10 @@ function confirm() {
   esac
 }
 
+function exc() {
+  read -p "please enter a commit message: " message
+  git add .
+  name=$(basename "$PWD")
+  git commit -m "${name}: ${message}"
+}
+alias exc=exc
