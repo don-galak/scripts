@@ -275,3 +275,36 @@ function exc() {
   git commit -m "${name}: ${message}"
 }
 alias exc=exc
+
+function mvc() {
+  read -p "please enter a commit message: " message
+  git add .
+  current_branch=$(git rev-parse --abbrev-ref HEAD)
+  git commit -m "${current_branch}: ${message}"
+}
+alias mvc=mvc
+
+function switch() {
+  # Get list of branches and store in array
+  branches=($(git branch | cut -c 3-))
+
+  # Check if there are any branches to switch to
+  if [ ${#branches[@]} -eq 0 ]; then
+    echo "No branches to switch to"
+    return 0
+  fi
+
+  # Prompt user to select branch to switch to
+  branch=$(printf '%s\n' "${branches[@]}" | rofi -dmenu -p "Select branch to switch to:")
+
+  # Check if branch is selected
+  if [ -n "$branch" ]; then
+    # Switch to selected branch
+    git checkout "$branch"
+  else
+    echo "No branch selected to switch to"
+  fi
+}
+
+alias switch=switch
+                      
