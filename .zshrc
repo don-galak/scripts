@@ -158,23 +158,16 @@ function confirm() {
 
 alias delete_all_branches=delete_all_branches
 
-function commit() {
-  echo "please enter a commit message: "
-  read COMMIT_MSG
+# COMMIT
+function cm() {
+        echo "Please enter a commit message: "
+        read COMMIT_MSG
 
-  CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-  git commit -m "${CURRENT_BRANCH}: ${COMMIT_MSG}"
+        git add .
+        CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+        git commit -m "${CURRENT_BRANCH}: ${COMMIT_MSG}"
 }
-
-function mvc() {
-  echo "please enter a commit message: "
-  read COMMIT_MSG
-
-  git add .
-  CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-  git commit -m "${CURRENT_BRANCH}: ${COMMIT_MSG}"
-}
-alias mvc=mvc
+alias cm=cm
 
 function switch() {
   # Get list of branches and store in array
